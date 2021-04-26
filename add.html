@@ -1,0 +1,112 @@
+{% extends '../index2.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title%}
+  <title>المحلات</title>
+{% endblock %}
+{% block titlepage %}
+<h1 class="m-0 text-dark">المنتجات</h1>
+{% endblock %}
+{% block titlecontent %}
+
+<li class="breadcrumb-item active">اضافه منتج  </li>
+{% endblock %}
+
+{% block content %}
+
+<section class="content">
+  <div class="container-fluid">
+  <div class="row">
+    {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}<div class="alert alert-danger" role="alert">
+                        {{ message }}
+                      </div>
+                      {% else %} 
+                      <div class="alert alert-success "  role="alert">
+                        {{ message }}
+                      </div>
+                      {% endif %}
+                    
+                
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+  <div class="col-md-12">
+  <div class="card card-info">
+    <div class="card-header">
+      <div class="row">
+        
+      <h3 class="col-md-10 card-title">اضافه منتج </h3>
+      
+        <button onclick="window.history()" type="submit" class="col-md-2 btn btn-secondary float-left ">رجوع</button>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <div class="card-body">
+        <div class="row">
+        
+        <div class="form-group col-md-4">
+          <label  class="control-label">اسم المنتج :</label>
+
+            {{forms.pro_name}}
+          
+        </div>
+        <div class="form-group col-md-8">
+            <label  class="control-label">وصف المنتج :</label>
+  
+              {{forms.pro_disc}}
+            
+          </div>
+          <div class="form-group col-md-4">
+            <label  class="control-label"> $ سعر  المنتج :</label>
+  
+              {{forms.pro_price}}
+            
+          </div>
+          <div class="form-group col-md-4">
+            <label  class="control-label">صوره المنتج :</label>
+  
+              {{forms.pro_img}}
+            
+          </div>
+          <div class="form-group col-md-4">
+            <label  class="control-label "> الصنف :</label>
+            <div class="form-control">
+              {{forms.categories}}
+              </div>
+            
+          </div>
+          <div class="form-group col-md-12 ">
+            <label  class="control-label"> المحل :</label>
+  <div class="form-control">
+              {{forms.stors}}
+            </div>
+            
+          </div>
+        
+      </div>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <div class="col-md-4">
+        <button type="submit" class="btn btn-success btn-block ">حفظ
+        </button>
+      </div>
+      </div>
+      <!-- /.card-footer -->
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+{%endblock%}
